@@ -1,0 +1,1 @@
+{"version":3,"file":"FileNode.d.ts","sourceRoot":"","sources":["../../src/filetree/FileNode.ts"],"names":[],"mappings":"AACA,OAAO,IAAI,MAAM,QAAQ,CAAC;AAC1B,OAAO,YAAY,MAAM,gBAAgB,CAAC;AAE1C,MAAM,CAAC,OAAO,OAAO,QAAS,SAAQ,YAAY;gBAElC,IAAI,EAAE,IAAI,EAAE,KAAK,EAAE,MAAM;IAQrC,OAAO,CAAC,UAAU;CA0CrB"}

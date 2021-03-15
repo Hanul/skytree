@@ -1,0 +1,1 @@
+{"version":3,"file":"FolderInfo.d.ts","sourceRoot":"","sources":["../../src/filetree/FolderInfo.ts"],"names":[],"mappings":"AAAA,OAAO,IAAI,MAAM,QAAQ,CAAC;AAE1B,MAAM,CAAC,OAAO,WAAW,UAAU;IAC/B,IAAI,EAAE,MAAM,CAAC;IACb,OAAO,EAAE,UAAU,EAAE,CAAC;IACtB,KAAK,EAAE,IAAI,EAAE,CAAC;CACjB"}

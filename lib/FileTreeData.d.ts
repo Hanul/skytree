@@ -1,7 +1,9 @@
 import TreeNodeData from "./TreeNodeData";
-export default interface FileTreeNodeData extends TreeNodeData {
-    color: string;
-    filename: string;
-    children?: FileTreeNodeData[];
+export interface FileData extends TreeNodeData {
+    name: string;
+}
+export interface FolderData extends TreeNodeData {
+    name: string;
+    children: (FileData | FolderData)[];
 }
 //# sourceMappingURL=FileTreeData.d.ts.map
