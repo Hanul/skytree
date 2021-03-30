@@ -1,32 +1,43 @@
-import { DomNode, el } from "@hanul/skynode";
+import { ScrollableDomNode } from "@hanul/skynode";
 import File from "./File";
 import FileNode from "./FileNode";
+import FileTreeNodeData from "./FileTreeNodeData";
 import Folder from "./Folder";
 import FolderNode from "./FolderNode";
 
-export default class FileTree extends DomNode<HTMLUListElement> {
+export default class FileTree extends ScrollableDomNode<FileTreeNodeData, HTMLUListElement> {
 
-    private folderList: DomNode<HTMLUListElement>;
-    private fileList: DomNode<HTMLUListElement>;
+    private folderToTreeNodeDataSet(folder: Folder, depth: number) {
+        let nodeDataSet: FileTreeNodeData[] = [{ type: "folder", depth, name: folder.name, opened: folder.opened }];
+        if (folder.opened === true) {
+            for (const subFolder of folder.folders) {
+                nodeDataSet = nodeDataSet.concat(this.folderToTreeNodeDataSet(subFolder, depth + 1));
+            }
+            for (const file of folder.files) {
+                nodeDataSet.push({ type: "file", depth: depth + 1, name: file.name });
+            }
+        }
+        return nodeDataSet;
+    }
 
-    constructor(folders: Folder[], files: File[], private depth = 0) {
-        super(document.createElement("ul"));
-        this.style({
-            background: "#252526",
-            color: "#ccc",
-            fontSize: 13,
+    constructor(folders: Folder[], files: File[]) {
+        super(document.createElement("ul"), {
+            childTag: "li",
+            baseChildHeight: 22,
+        }, (nodeData) => {
+            if (nodeData.type === "folder") {
+                return new FolderNode(nodeData);
+            } else {
+                return new FileNode(nodeData);
+            }
         });
-        this.append(el("li", this.folderList = el("ul")));
-        this.append(el("li", this.fileList = el("ul")));
-        for (const folder of folders) { this.addFolder(folder); }
-        for (const file of files) { this.addFile(file); }
-    }
-
-    public addFolder(folder: Folder): void {
-        this.folderList.append(new FolderNode(folder, this.depth));
-    }
-
-    public addFile(file: File): void {
-        this.fileList.append(new FileNode(file, this.depth));
+        let nodeDataSet: FileTreeNodeData[] = [];
+        for (const folder of folders) {
+            nodeDataSet = nodeDataSet.concat(this.folderToTreeNodeDataSet(folder, 0));
+        }
+        for (const file of files) {
+            nodeDataSet.push({ type: "file", depth: 0, name: file.name });
+        }
+        this.init(nodeDataSet);
     }
 }

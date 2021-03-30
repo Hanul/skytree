@@ -1,24 +1,21 @@
 import { el } from "@hanul/skynode";
-import File from "./File";
 import FileTreeNode from "./FileTreeNode";
+import FileTreeNodeData from "./FileTreeNodeData";
 
 export default class FileNode extends FileTreeNode {
 
-    constructor(file: File, depth: number) {
-        super(file.name, depth);
-        this.display(
+    constructor(data: FileTreeNodeData) {
+        super(data);
+        this.append(
             this.createIcon(),
-            el("span", file.name),
+            el("span", data.name),
         );
     }
 
     private createIcon() {
         return el("div",
-            {
-                style: {
-                    padding: 4,
-                },
-            }, el("div",
+            { style: { padding: 4 } },
+            el("div",
                 {
                     style: {
                         position: "relative",

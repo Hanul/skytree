@@ -1,12 +1,7 @@
 import FileTreeNode from "./FileTreeNode";
-import Folder from "./Folder";
+import FileTreeNodeData from "./FileTreeNodeData";
 export default class FolderNode extends FileTreeNode {
     private arrow;
-    private fileTree;
-    private opening;
-    constructor(folder: Folder, depth: number);
-    open(): void;
-    close(): void;
-    toggle(): void;
+    constructor(data: FileTreeNodeData);
 }
 //# sourceMappingURL=FolderNode.d.ts.map

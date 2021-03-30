@@ -1,7 +1,7 @@
-import File from "./File";
 import FileTreeNode from "./FileTreeNode";
+import FileTreeNodeData from "./FileTreeNodeData";
 export default class FileNode extends FileTreeNode {
-    constructor(file: File, depth: number);
+    constructor(data: FileTreeNodeData);
     private createIcon;
 }
 //# sourceMappingURL=FileNode.d.ts.map
