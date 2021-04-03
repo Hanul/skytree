@@ -21,6 +21,7 @@ export default class FileTree extends ScrollableDomNode<FileTreeNodeData, HTMLUL
     }
 
     constructor(folders: Folder[], files: File[]) {
+
         super(document.createElement("ul"), {
             childTag: "li",
             baseChildHeight: 22,
@@ -31,6 +32,13 @@ export default class FileTree extends ScrollableDomNode<FileTreeNodeData, HTMLUL
                 return new FileNode(nodeData);
             }
         });
+
+        this.style({
+            background: "#252526",
+            color: "#ccc",
+            fontSize: 13,
+        });
+
         let nodeDataSet: FileTreeNodeData[] = [];
         for (const folder of folders) {
             nodeDataSet = nodeDataSet.concat(this.folderToTreeNodeDataSet(folder, 0));
