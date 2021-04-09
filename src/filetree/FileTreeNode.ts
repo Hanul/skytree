@@ -1,4 +1,4 @@
-import { BodyNode, DomNode, ScrollItemDomNode } from "@hanul/skynode";
+import { BodyNode, DomNode, el, ScrollItemDomNode } from "@hanul/skynode";
 import FileTreeNodeData from "./FileTreeNodeData";
 
 export default class FileTreeNode extends ScrollItemDomNode<FileTreeNodeData, HTMLLIElement> {
@@ -19,7 +19,7 @@ export default class FileTreeNode extends ScrollItemDomNode<FileTreeNodeData, HT
 
         this.domElement.draggable = true;
         this.on("dragstart", (event: DragEvent) => {
-            this.dragging = new DomNode(document.createElement("div")).appendTo(BodyNode);
+            this.dragging = el<HTMLDivElement>("div").appendTo(BodyNode);
             this.dragging.appendText(this.data.name);
             this.dragging.style({
                 position: "fixed",
